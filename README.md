@@ -1,5 +1,7 @@
-# ランラン♪ももわサンタ配達ゲーム with HTML5 and Node
+# ランラン♪ももわサンタゲーム with HTML5 and Node
 ![screenshopt of this game](https://raw.githubusercontent.com/usaribbon/RunRunUsanta/master/momowasanta/screenshot.png)
+- Movie1: [https://vine.co/v/OHOQZYOXghv](https://vine.co/v/OHOQZYOXghv)
+- Movie2: [https://vine.co/v/OHOPY25nJtm](https://vine.co/v/OHOPY25nJtm)
 
 ## このゲームについて
 - 5匹のももわサンタがおうちにプレゼントを配達するゲームです
