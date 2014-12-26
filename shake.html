@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0"/>
+	<title>ふるふる</title>
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+<body>
+	<div id="initialGroup">
+		<select name="groupnum">
+		<option value="01">赤ももさわ</option>
+		<option value="02">青ももわさ</option>
+		<option value="03">水ももわさ</option>
+		<option value="04">緑ももわさ</option>
+		<option value="05">橙ももわさ</option>
+		</select>
+		<button id="setGroupNum" onClick="setGroupNum();">Set Your Group</button>
+	</div>
+	<div id="res"></div>
+	<div id="yourGroupNum"></div>
+	<div id="cnt"></div>
+
+		<script>
+
+		var socket = io();
+		var groupnum = '';
+		var cnt = 0;
+
+		window.addEventListener('devicemotion', function(event1){
+			var x_raw = event1.accelerationIncludingGravity.x;
+			var y_raw = event1.accelerationIncludingGravity.y;
+			var z_raw = event1.accelerationIncludingGravity.z;
+
+			var x = Math.round(x_raw*10)/10;
+			var y = Math.round(y_raw*10)/10;
+			var z = Math.round(z_raw*10)/10;
+
+			if(x != null){
+ 				$('#res').html('ももわさゲーム対応端末！');
+			}else{
+				 $('#res').html('ももわさゲームできません．．');
+			}
+			/*var res = document.getElementById('res');
+			res.innerHTML = 
+				"X: "+ x +"<br/>"+
+				"Y: "+ y +"<br/>"+
+				"Z: "+ z;
+			*/
+			if(x > 3 && y > 3 && z > 1){
+				cnt++;
+    			socket.emit('count'+groupnum, cnt);
+				//$('#cnt').html(cnt);
+			}
+
+		},true);
+
+		function setGroupNum(){
+			var n = $('select[name=groupnum] option:selected').text();
+			groupnum = $('select[name=groupnum]').val();
+			$('#initialGroup').hide();
+			$('#yourGroupNum').html(n+"チームです<br/><h1>Let's shake!!</h1>");
+		}
+
+	</script>
+</body>
+</html>

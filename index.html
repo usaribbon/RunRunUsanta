@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>はしれ！ももわさんた！！</title>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <style>
+    html,body{
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    img{
+      position: relative;
+    }
+
+    .momowasanta{
+      width: 100%;
+      background: url('house.png') no-repeat;
+    }
+
+    #winner{
+      width: 100%;
+      height: 100%; 
+      background-image: url('winner.jpg');
+      display: block;
+    }
+
+    #winner h1{
+      color : #ff7d39;
+    }
+
+    #winner div{
+      width: 50%;
+      margin: auto;
+      text-align: center;
+      font-size: 18pt;
+    }
+
+    #lacebox{
+      height: 100%;
+      width: 100%;
+      background-image: url('star.gif');
+    }
+  </style>
+</head>
+<body>
+  <div id='winner'>
+    <div><h1>Congratulations!!</h1></div>
+    <div id='winList'></div></div>
+  </div>
+  <div id="lacebox">
+    <!-- img#0$[src=momowasanta/0$.png][alt=momowasa0$][width=20%]*5 -->
+    <div class="momowasanta"><img src="01.png" alt="momowasa01" id="01"></div>
+    <div class="momowasanta"><img src="02.png" alt="momowasa02" id="02"></div>
+    <div class="momowasanta"><img src="03.png" alt="momowasa03" id="03"></div>
+    <div class="momowasanta"><img src="04.png" alt="momowasa04" id="04"></div>
+    <div class="momowasanta"><img src="05.png" alt="momowasa05" id="05"></div>  
+  </div>
+  <script>
+    
+    $('#winner').hide();
+    var lacearea = $('body').width()-160;
+    //lacearea = 300;
+    $("img").css("left",lacearea);
+
+    var socket = io();
+    socket.emit('message', "Main page connected");
+
+      socket.on('count01', function(cnt){
+        refleshCnt('01',cnt);
+      });
+
+      socket.on('count02', function(cnt){
+        refleshCnt('02',cnt);
+      });
+
+      socket.on('count03', function(cnt){
+        refleshCnt('03',cnt);
+      });
+
+      socket.on('count04', function(cnt){
+        refleshCnt('04',cnt);
+      });
+
+      socket.on('count05', function(cnt){
+        refleshCnt('05',cnt);
+      });
+
+      var cnt_array = { '01':0, '02':0, '03':0, '04':0, '05':0};
+      var goal_flag = { '01':false, '02':false, '03':false, '04':false, '05':false};
+      var goalcnt = 1;
+      function Winner(n){
+        if(goalcnt >= 5) { 
+          $('#winner').show();
+          $('#lacebox').hide();
+        }
+        $('#winList').append("<p>第"+goalcnt+"位　<img src='"+n+".png' width='10%'/></p>");
+        goalcnt++;
+      }
+
+      function refleshCnt(n,cnt){
+        var fixed_cnt = cnt * 0.7; //you can change weight of shaking
+        cnt_array[n] += fixed_cnt;
+        var currentdistance = lacearea - cnt_array[n];
+        if(currentdistance <= 80 && goal_flag[n] == false){
+          //socket.disconnect();
+          Winner(n);
+          goal_flag[n] = true;
+        }else if(goal_flag[n] == false){
+          $('#'+n).css("left",currentdistance);
+        }        
+      }
+
+  </script>  
+</body>
+</html>
