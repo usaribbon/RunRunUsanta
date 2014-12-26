@@ -1,4 +1,5 @@
-# ももわサンタプレゼント配達ゲーム
+# ランラン♪ももわサンタ配達ゲーム with HTML5 and Node
+![screenshopt of this game](https://raw.githubusercontent.com/usaribbon/RunRunUsanta/master/momowasanta/screenshot.png)
 
 ## このゲームについて
 - 5匹のももわサンタがおうちにプレゼントを配達するゲームです
@@ -15,6 +16,8 @@
 5. 好きなももわさの色を選んでふりふりすると，画面のももわさが走る！
 6. チームプレイも楽しいです☆　振り幅の調整は `index.html/105行目` で変更できます
 
+
+# RunRunMomowasanta: Lacing game by using HTML5 and Nodejs
 ## How to enjoy this game
 1. Clone this repository in your PC which is installed Node.js
 2. To install some dependecies, run `npm install` in cloned directory
