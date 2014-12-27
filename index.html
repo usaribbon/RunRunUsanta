@@ -102,7 +102,7 @@
       }
 
       function refleshCnt(n,cnt){
-        var fixed_cnt = cnt * 0.7; //you can change weight of shaking
+        var fixed_cnt = cnt * 1; //you can change weight of shaking
         cnt_array[n] += fixed_cnt;
         var currentdistance = lacearea - cnt_array[n];
         if(currentdistance <= 80 && goal_flag[n] == false){
