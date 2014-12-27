@@ -26,7 +26,6 @@
 
 		var socket = io();
 		var groupnum = '';
-		var cnt = 0;
 
 		window.addEventListener('devicemotion', function(event1){
 			var x_raw = event1.accelerationIncludingGravity.x;
@@ -49,8 +48,7 @@
 				"Z: "+ z;
 			*/
 			if(x > 3 && y > 3 && z > 1){
-				cnt++;
-    			socket.emit('count'+groupnum, cnt);
+    			socket.emit('count'+groupnum, 1);
 				//$('#cnt').html(cnt);
 			}
 
