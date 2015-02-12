@@ -2,6 +2,7 @@
 ![screenshopt of this game](https://raw.githubusercontent.com/usaribbon/RunRunUsanta/master/momowasanta/screenshot.png)
 - Movie1: [https://vine.co/v/OHOQZYOXghv](https://vine.co/v/OHOQZYOXghv)
 - Movie2: [https://vine.co/v/OHOPY25nJtm](https://vine.co/v/OHOPY25nJtm)
+- ラボの忘年会ネタでつくりました
 
 ## このゲームについて
 - 5匹のももわサンタがおうちにプレゼントを配達するゲームです
